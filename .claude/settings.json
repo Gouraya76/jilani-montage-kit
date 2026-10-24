@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "nohup bash \"$CLAUDE_PROJECT_DIR/outils/installer.sh\" >/dev/null 2>&1 &" }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": ["Bash", "Read", "Write", "Edit", "WebSearch", "WebFetch"]
+  }
+}
