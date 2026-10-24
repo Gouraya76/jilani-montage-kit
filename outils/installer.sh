@@ -10,7 +10,8 @@ rm -f /tmp/jm-installation.ok /tmp/jm-installation.erreur
     (apt-get update -qq || sudo apt-get update -qq)
     (apt-get install -y -qq ffmpeg zip unzip fonts-noto-color-emoji nodejs || sudo apt-get install -y -qq ffmpeg zip unzip fonts-noto-color-emoji nodejs)
   fi
-  python3 -m pip install -q --break-system-packages faster-whisper yt-dlp opencv-python-headless numpy pillow onnxruntime 2>/dev/null \
-    || python3 -m pip install -q faster-whisper yt-dlp opencv-python-headless numpy pillow onnxruntime
+  # yt-dlp à jour + curl-cffi : sans ce module, TikTok refuse le téléchargement (« no impersonate target is available »).
+  PAQUETS=(faster-whisper "yt-dlp[default,curl-cffi]" opencv-python-headless numpy pillow onnxruntime)
+  python3 -m pip install -q -U --break-system-packages "${PAQUETS[@]}" 2>/dev/null || python3 -m pip install -q -U "${PAQUETS[@]}"
   touch /tmp/jm-installation.ok
 ) > /tmp/jm-installation.log 2>&1 || touch /tmp/jm-installation.erreur
