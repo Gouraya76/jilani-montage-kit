@@ -1,0 +1,77 @@
+{
+ "duree": 66.1,
+ "coupes": [
+  3.2,
+  5.4,
+  8.2,
+  11.4,
+  14.2,
+  17.2,
+  19.8,
+  22.6,
+  25.2,
+  27.2,
+  29.0,
+  32.0,
+  34.5,
+  37.0,
+  39.4,
+  41.9,
+  44.7,
+  47.3,
+  49.3,
+  51.3,
+  54.7,
+  57.7,
+  60.5
+ ],
+ "fond": "/workspace/news2/fond.mp4",
+ "voix": "/workspace/news2/voix.mp3",
+ "musique": "/workspace/news2/musique.mp3",
+ "mots": "/workspace/news2/mots-ok.json",
+ "logo": "/workspace/news/logo.png",
+ "date": "23 OCT. 2026",
+ "lieu": "NORD-OUEST · FRANCE",
+ "titre": [
+  "TEMPÊTE AUSTEN",
+  "LA FRANCE FRAPPÉE DE PLEIN FOUET"
+ ],
+ "titre_fin": 6.0,
+ "chiffres": [
+  {
+   "t": 0.35,
+   "jauge": 161,
+   "duree": 2.6
+  },
+  {
+   "t": 23.0,
+   "valeur": 23,
+   "icone": "alerte",
+   "sous": "DÉPARTEMENTS EN ORANGE"
+  },
+  {
+   "t": 37.6,
+   "valeur": 242000,
+   "icone": "eclair",
+   "sous": "FOYERS SANS COURANT"
+  },
+  {
+   "t": 42.0,
+   "texte": "1 MORT",
+   "sous": "2 BLESSÉS GRAVES",
+   "duree": 1.8
+  },
+  {
+   "t": 48.6,
+   "valeur": 276,
+   "icone": "sirene",
+   "sous": "INTERVENTIONS DES POMPIERS"
+  },
+  {
+   "t": 53.0,
+   "texte": "BOELO",
+   "icone": "pluie",
+   "sous": "NOUVELLE PERTURBATION"
+  }
+ ]
+}

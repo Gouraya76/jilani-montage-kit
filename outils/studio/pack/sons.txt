@@ -1,0 +1,42 @@
+# Banque de sons JILANI MONEY (dossier sons/) : identifiant | catégorie | quand l'utiliser | durée (s)
+whoosh-court | Whooshs | déplacement rapide, apparition | 0.35
+whoosh-long | Whooshs | transition de scène | 1.58
+whoosh-grave | Whooshs | mouvement lourd, gros zoom | 0.9
+swish | Whooshs | texte qui glisse, petit mouvement | 0.22
+whoosh-passage | Whooshs | objet qui traverse l’écran | 0.81
+whoosh-inverse | Whooshs | aspiration, avant une révélation | 1.1
+riser-court | Risers | monter la tension (1 s) | 1.0
+riser-long | Risers | tension avant la révélation (3 s) | 3.6
+riser-tonal | Risers | montée musicale | 2.6
+riser-tension | Risers | suspense, horreur | 3.0
+riser-inverse | Risers | juste avant un impact | 1.88
+impact-cinema | Impacts | révélation, titre qui tombe | 3.58
+sub-drop | Impacts | chute, moment fort | 2.0
+sub-drop-court | Impacts | coupure, changement de plan | 0.8
+coup-poing | Impacts | choc, comparaison qui frappe | 0.4
+impact-metal | Impacts | objet dur, armure, cadenas | 2.2
+boom-bande-annonce | Impacts | fin de phrase, écran titre | 4.5
+glitch-court | Glitchs | bug, coupure numérique | 0.3
+glitch-stutter | Glitchs | répétition saccadée | 0.54
+glitch-transition | Glitchs | passage d’une scène à l’autre | 0.7
+glitch-donnees | Glitchs | écran qui charge, piratage | 1.2
+distorsion | Glitchs | image qui se brouille | 0.6
+clic-doux | Interface | bouton, sélection | 0.05
+clic-sec | Interface | case cochée, interrupteur | 0.04
+pop | Interface | étiquette qui apparaît | 0.12
+pop-bulle | Interface | bulle, icône, emoji | 0.18
+notification | Interface | message, nouvelle info | 0.98
+validation | Interface | coche verte, réussite | 1.24
+erreur | Interface | croix rouge, mauvaise réponse | 0.32
+hud-bips | Interface | HUD, compteur, écran futuriste | 0.36
+montee-rapide | Transitions | élément qui s’envole vers le haut | 0.5
+descente-rapide | Transitions | élément qui tombe | 0.5
+arret-bande | Transitions | pause dramatique, gag | 1.0
+rembobinage | Transitions | retour en arrière, flashback | 1.2
+zap | Énergie | éclair court | 0.45
+crepitement | Énergie | électricité, énergie qui grésille | 1.5
+laser | Énergie | rayon, tir d’énergie | 0.35
+etincelle-magique | Énergie | apparition magique, brillance | 1.8
+boing | Comique | rebond, gag | 0.7
+glissade | Comique | chute, maladresse | 0.9
+malaise | Comique | silence gênant, déception | 1.95
