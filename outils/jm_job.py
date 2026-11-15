@@ -7,6 +7,8 @@
     python3 outils/jm_job.py livrer /workspace/montage.mp4 /workspace/infos.json
         -> envoie la vidéo finie au site (morceaux de 4 Mo) : le membre la télécharge sur la page
     python3 outils/jm_job.py echec "raison en une phrase simple"
+    python3 outils/jm_job.py pack      -> télécharge le pack JILANI MONEY et l'ouvre dans /workspace/pack
+    python3 outils/jm_job.py fish      -> la clé Fish Audio du membre est-elle là ? (« CLÉ OK » / « CLÉ ABSENTE »)
 Uniquement la bibliothèque standard de Python.
 """
 import json, math, os, sys, time, urllib.error, urllib.request
@@ -58,6 +60,29 @@ def main():
         appel('POST', avec(url, action='etape'), {'n': 1, 'texte': 'Ton Claude a reçu la vidéo et prépare sa machine de montage.'})
         print(d.get('consignes', ''))
         print('\n===== CE QUE LE MEMBRE DEMANDE =====\n' + d.get('message', ''))
+    elif cmd == 'pack':
+        import io, zipfile
+        dossier = sys.argv[2] if len(sys.argv) > 2 else '/workspace/pack'
+        for site in ('https://jilani-money.com', 'https://jilani-money.netlify.app'):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(site + '/media/pack-montage/pack-montage-jm.zip', headers=UA), timeout=180) as r:
+                    zipfile.ZipFile(io.BytesIO(r.read())).extractall(dossier)
+                print('pack prêt dans', dossier, '-> lis', os.path.join(dossier, 'LISEZMOI-CLAUDE.md')); return
+            except Exception as err:
+                print('essai', site, ':', err)
+        sys.exit('Pack introuvable : vérifie l’accès réseau de l’environnement (jilani-money.com autorisé, ou « Full »).')
+    elif cmd == 'fish':
+        cle = os.environ.get('FISH_API_KEY') or os.environ.get('FISH_AUDIO_API_KEY')
+        h = {**UA, 'Accept': 'application/json'}
+        if cle: h['Authorization'] = 'Bearer ' + cle
+        try:
+            with urllib.request.urlopen(urllib.request.Request('https://api.fish.audio/wallet/self/api-credit', headers=h), timeout=60) as r:
+                r.read()
+            print('CLÉ OK fish (modèle gratuit s2.1-pro-free : le crédit ne compte pas)')
+        except urllib.error.HTTPError as err:
+            print('CLÉ ABSENTE fish' if err.code in (401, 402, 403) else f'Fish Audio : erreur {err.code}')
+        except Exception as err:
+            print('Fish Audio injoignable :', err, '(autorise api.fish.audio dans l’accès réseau)')
     elif cmd == 'etape':
         appel('POST', avec(url_job(), action='etape'), {'n': int(sys.argv[2]), 'texte': ' '.join(sys.argv[3:])[:300]})
         print('ok')
