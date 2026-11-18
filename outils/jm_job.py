@@ -6,6 +6,7 @@
     python3 outils/jm_job.py etape 3 "Je transcris la voix."      (barre de progression sur le site, étapes 1 à 6)
     python3 outils/jm_job.py livrer /workspace/montage.mp4 /workspace/infos.json
         -> envoie la vidéo finie au site (morceaux de 4 Mo) : le membre la télécharge sur la page
+           (+ la miniature 9:16 si /workspace/miniature.jpg ou .png existe, ou 4e argument : chemin de la miniature)
     python3 outils/jm_job.py echec "raison en une phrase simple"
     python3 outils/jm_job.py pack      -> télécharge le pack JILANI MONEY et l'ouvre dans /workspace/pack
     python3 outils/jm_job.py fish      -> la clé Fish Audio du membre est-elle là ? (« CLÉ OK » / « CLÉ ABSENTE »)
@@ -106,6 +107,15 @@ def main():
             for i in range(n):
                 appel('POST', avec(url, action='morceau', i=i), f.read(MORCEAU), binaire=True)
                 print(f'envoi {i + 1}/{n}', flush=True)
+        # miniature 9:16 (facultative) : affichée sous la vidéo sur le site, avec un bouton pour la télécharger
+        mini = sys.argv[4] if len(sys.argv) > 4 else next((m for m in ('/workspace/miniature.jpg', '/workspace/miniature.png') if os.path.exists(m)), '')
+        if mini and os.path.exists(mini) and os.path.getsize(mini) <= 3_000_000:
+            try:
+                with open(mini, 'rb') as f:
+                    appel('POST', avec(url, action='miniature'), f.read(), binaire=True)
+                print('miniature envoyée')
+            except BaseException as e:   # une miniature ratée ne bloque jamais la livraison de la vidéo
+                print('miniature non envoyée :', e)
         appel('POST', avec(url, action='fin'), {'parts': n, 'taille': taille, 'infos': infos})
         print('Vidéo livrée : le membre peut la télécharger sur le site.')
     else:
